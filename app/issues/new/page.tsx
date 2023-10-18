@@ -47,7 +47,7 @@ const NewIssuePage = () => {
           <Callout.Text>{error}</Callout.Text>
         </Callout.Root>
       )}
-      <form className="space-y-3" onSubmit={onSubmit}      >
+      <form className="space-y-3" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input placeholder="Title" {...register('title')} />
         </TextField.Root>
@@ -59,7 +59,7 @@ const NewIssuePage = () => {
             <SimpleMDE placeholder="Description" {...field} />
           )}
         />
-        {errors.description && <Text color="red" as="p">{errors.description.message}</Text>}
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
         <Button disabled={isSubmitting}>
           Submit New Issue {isSubmitting && <Spinner />}
         </Button>
