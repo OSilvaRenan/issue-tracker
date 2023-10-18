@@ -1,8 +1,8 @@
+'use client';
 import { User } from '@prisma/client';
 import { Select } from '@radix-ui/themes';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-
 
 const AssigneeSelect = () => {
   const [users, setUsers] = useState<User[]>([]);

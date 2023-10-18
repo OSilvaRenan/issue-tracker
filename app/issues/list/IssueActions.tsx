@@ -1,50 +1,17 @@
-'use client';
-
-import { Status } from '@prisma/client';
-import { Select } from '@radix-ui/themes';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { Button, Flex } from '@radix-ui/themes';
+import Link from 'next/link';
 import React from 'react';
+import IssueStatusFilter from './IssueStatusFilter';
 
-const statuses: { label: string; value?: Status }[] = [
-  { label: 'All' },
-  { label: 'Open', value: 'OPEN' },
-  { label: 'In Progress', value: 'IN_PROGRESS' },
-  { label: 'Closed', value: 'CLOSED' },
-];
-
-const IssueStatusFilter = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
+const IssueActions = () => {
   return (
-    <Select.Root
-      defaultValue={searchParams.get('status') || ''}
-      onValueChange={(status) => {
-        const params = new URLSearchParams();
-        if (status) params.append('status', status);
-        if (searchParams.get('orderBy'))
-          params.append('orderBy', searchParams.get('orderBy')!);
-
-        const query = params.size ? '?' + params.toString() : '';
-        router.push('/issues/list' + query);
-      }}
-    >
-      {statuses? <>
-      <Select.Trigger placeholder="Filter by status..." />
-      <Select.Content>
-        {statuses.map((status) => (
-          <Select.Item
-            key={status.value}
-            value={status.value!}
-          >
-            {status.label}
-          </Select.Item>
-        ))}
-      </Select.Content></> : 
-      null}
-      
-    </Select.Root>
+    <Flex justify="between">
+      <IssueStatusFilter />
+      <Button>
+        <Link href="/issues/new">New Issue</Link>
+      </Button>
+    </Flex>
   );
 };
 
-export default IssueStatusFilter;
+export default IssueActions;
