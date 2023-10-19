@@ -32,11 +32,11 @@ const IssueAssigneeFilter = async () => {
                 if (searchParams.get('orderBy'))
                     params.append('orderBy', searchParams.get('orderBy')!);
 
-                    if (searchParams.get('assigned'))
-                    params.append('assigned', searchParams.get('assigned')!);
+                    // if (searchParams.get('assigned'))
+                    // params.append('assigned', searchParams.get('assigned')!);
 
-                // const query = params.size ? '?' + params.toString() : '';
-                // router.push('/issues/list' + query);
+                const query = params.size ? '?' + params.toString() : '';
+                router.push('/issues/list' + query);
             }}
         >
             <Select.Trigger placeholder='Filter by assigned...' />
