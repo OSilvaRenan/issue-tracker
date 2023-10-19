@@ -13,7 +13,7 @@ const statusMap: Record<
 
 const IssueStatusBadge = ({ status }: { status: Status }) => {
   return (
-    <Badge color={statusMap[status].color}>
+    <Badge color={statusMap[status].color} key={statusMap[status].label}>
       {statusMap[status].label}
     </Badge>
   )
