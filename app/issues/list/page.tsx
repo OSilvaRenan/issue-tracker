@@ -34,7 +34,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
     const user = allUsers.find((user)=>( user.id === searchParams.assigned ));
     const assignedToUserId = user?.id!;
    
-  const where = { assignedToUserId };
+  const where = { status, assignedToUserId };
 
 
   const orderBy = columnNames
@@ -46,17 +46,6 @@ const IssuesPage = async ({ searchParams }: Props) => {
   const pageSize = 10;
 
   const issues = await prisma.issue.findMany({
-    // select:{
-    //   id: true,
-    //   title: true,
-    //   status: true,
-    //   createdAt: true,
-    //   assignedToUser: {
-    //     select: {
-    //       name: true
-    //     }
-    //   }
-    // },
     include:{
       assignedToUser: {
             select: {

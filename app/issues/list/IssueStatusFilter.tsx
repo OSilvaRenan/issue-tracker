@@ -18,10 +18,14 @@ const IssueStatusFilter = () => {
 
     return (
         <Select.Root
-            defaultValue={searchParams.get('status') || ''}
+            value={searchParams.get('status') || ''}
             onValueChange={(status) => {
-                const params = new URLSearchParams();
+                const params = new URLSearchParams(searchParams);
+
+                params.delete('status');
+
                 if (status) params.append('status', status);
+
                 if (searchParams.get('orderBy'))
                     params.append('orderBy', searchParams.get('orderBy')!);
 
@@ -43,5 +47,7 @@ const IssueStatusFilter = () => {
         </Select.Root>
     );
 };
+
+export const dynamic = 'force-dynamic';
 
 export default IssueStatusFilter;
